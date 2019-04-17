@@ -82,6 +82,6 @@ searchController.extraBarItemSpacing = 30
   }
   ```
 
-- **Layout glitches when hiding scarch bar by scrolling.**
+- **Layout glitches when hiding search bar by scrolling.**
 
-  When `hidesSearchBarWhenScrolling` is set to `true`, there's a little glitch when navigation bar shrink after a transition happended. 
+  When `hidesSearchBarWhenScrolling` is set to `true`, there's a little glitch when navigation bar shrink after a transition happened. 

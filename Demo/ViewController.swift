@@ -15,6 +15,7 @@ class ViewController: UITableViewController {
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
+        searchController.skipFirstTwoTransition = true
         navigationItem.hidesSearchBarWhenScrolling = false
         
         // you can conatraint max width of search bar

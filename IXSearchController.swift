@@ -48,6 +48,8 @@ class IXSearchController: UISearchController {
     /// Add extra spacing between stack view, this is ignored when `maxSearchBarWidthWhenActive` is `nil`. This option is ignored on non-iPad devices.
     var extraBarItemSpacing: CGFloat = 30
     
+    var skipFirstTwoTransition: Bool = false
+    
     // MARK: - Private
     
     private var _baseConstraints: [NSLayoutConstraint] = []
@@ -214,14 +216,15 @@ extension IXSearchController {
             from.view.removeFromSuperview()
         }
         
-        let duration = _firstEver ? 0.001 : transitionDuration(using: transitionContext)
+        let duration = skipFirstTwoTransition && _firstEver ? 0.001 : transitionDuration(using: transitionContext)
+        
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseInOut], animations: {
             self.barContainer?.layoutIfNeeded()
             self._palette?.superview?.layoutIfNeeded()
         }) {
             transitionContext.completeTransition($0)
             // some temporary fix
-            if self._firstEver && from.isKind(of: IXSearchController.self) {
+            if self.skipFirstTwoTransition && self._firstEver && from.isKind(of: IXSearchController.self) {
                 self._firstEver = false
             }
         }
